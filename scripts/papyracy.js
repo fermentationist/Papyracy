@@ -14,13 +14,13 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 	toggleIcon = !toggleIcon;
 	if (toggleIcon) {
 		chrome.browserAction.setIcon(
-			{path: "Papyracy48_active.png", tabId: tab.id}
+			{path: "icons/Papyracy48_active.png", tabId: tab.id}
 		);
 		injectedCode = activationCode;
 		console.log(`Papyrusifying ${tab.url}...`);
 	} else {
 		chrome.browserAction.setIcon(
-			{path: "Papyracy48.png", tabId: tab.id}
+			{path: "icons/Papyracy48.png", tabId: tab.id}
 		);
 		injectedCode = deactivationCode;
 		console.log(`un-Papyrusifying ${tab.url}...`);

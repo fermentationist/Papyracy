@@ -1,19 +1,27 @@
 {
   "name": "Papyracy",
   "description": "Papyrus-ify it!",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "permissions": ["activeTab"],
-  "background": {
-    "scripts": ["papyracy.js"],
-    "persistent": true
-  },
-  "browser_action": {
+  "content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["scripts/papyracy.js"],
+			"run_at": "document_start"
+		}
+	],
+	"icons": {
+		"16": "icons/Papyracy16_active.png",
+		"48": "icons/Papyracy48_active.png",
+		"128": "icons/Papyracy128_active.png"
+	},
+  "action": {
     "default_icon": {
-      "16": "Papyracy16.png",
-      "48": "Papyracy48.png",
-      "128": "Papyracy128.png"
+      "16": "icons/Papyracy16.png",
+      "48": "icons/Papyracy48.png",
+      "128": "icons/Papyracy128.png"
     },
     "default_title": "Papyracy leverages the fontastic power of Papyrus to quickly render any webpage nearly unreadable!"
   },
-  "manifest_version": 2
+  "manifest_version": 3
 }
