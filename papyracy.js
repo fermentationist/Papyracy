@@ -1,5 +1,5 @@
 let injectedCode, toggleIcon = false;
-let activationCode = `styleTag = document.querySelector("#papyracy");
+let activationCode = `let styleTag = document.querySelector("#papyracy");
 	if (!styleTag) {
 		styleTag = document.createElement("style");
 		styleTag.type = "text/css";

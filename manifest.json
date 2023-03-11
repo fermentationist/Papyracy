@@ -1,21 +1,19 @@
-
 {
-	"name": "Papyracy",
-	"description": "Papyrus-ify it!",
-	"version": "1.0",
-	"permissions": [
-		"activeTab",
-		"tabs"
-	],
-	"background": {
-		"scripts": ["papyracy.js"],
-		"persistent": true
-	},
-	"browser_action": {
-		"default_icon": { "16": "Papyracy16.png",
-           "48": "Papyracy48.png",
-          "128": "Papyracy128.png" },
-		"default_title": "Papyracy leverages the fontastic power of Papyrus to quickly render any webpage nearly unreadable!"
-	},
-	"manifest_version": 2
+  "name": "Papyracy",
+  "description": "Papyrus-ify it!",
+  "version": "1.0",
+  "permissions": ["activeTab"],
+  "background": {
+    "scripts": ["papyracy.js"],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "Papyracy16.png",
+      "48": "Papyracy48.png",
+      "128": "Papyracy128.png"
+    },
+    "default_title": "Papyracy leverages the fontastic power of Papyrus to quickly render any webpage nearly unreadable!"
+  },
+  "manifest_version": 2
 }
