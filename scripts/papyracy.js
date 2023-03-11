@@ -10,7 +10,7 @@ let activationCode = `let styleTag = document.querySelector("#papyracy");
 
 let deactivationCode = `document.querySelector("#papyracy").innerHTML = ""`;
 
-chrome.browserAction.onClicked.addListener(function(tab) {
+chrome?.action?.onClicked?.addListener(function(tab) {
 	toggleIcon = !toggleIcon;
 	if (toggleIcon) {
 		chrome.browserAction.setIcon(
