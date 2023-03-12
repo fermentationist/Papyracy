@@ -6,7 +6,6 @@
 		"service_worker": "scripts/papyracy.js"
 	},
 	"permissions": ["activeTab", "storage", "scripting"],
-	"host_permissions": ["*:\/\/*/*", "<all_urls>"],
 	"icons": {
 		"16": "icons/Papyracy16_active.png",
 		"48": "icons/Papyracy48_active.png",
