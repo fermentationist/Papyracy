@@ -2,13 +2,11 @@
   "name": "Papyracy",
   "description": "Papyrus-ify it!",
   "version": "2.0.0",
-  "content_scripts": [
-		{
-			"matches": ["<all_urls>"],
-			"js": ["scripts/papyracy.js"],
-			"run_at": "document_end"
-		}
-	],
+	"background": {
+		"service_worker": "scripts/papyracy.js"
+	},
+	"permissions": ["activeTab", "storage", "scripting"],
+	"host_permissions": ["*:\/\/*/*", "<all_urls>"],
 	"icons": {
 		"16": "icons/Papyracy16_active.png",
 		"48": "icons/Papyracy48_active.png",

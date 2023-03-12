@@ -1,31 +1,45 @@
-let injectedCode, toggleIcon = false;
-let activationCode = `let styleTag = document.querySelector("#papyracy");
+let functionToExecute,
+  isActive = false;
+
+const papyrifyPage = () => {
+	let styleTag = document.querySelector("#papyracy");
 	if (!styleTag) {
 		styleTag = document.createElement("style");
 		styleTag.type = "text/css";
 		styleTag.setAttribute("id", "papyracy");
 	}
 	styleTag.innerHTML = "* { font-family: papyrus !important;}";
-	document.querySelector("head").appendChild(styleTag);`;
+	document.querySelector("head").appendChild(styleTag);
+}
 
-let deactivationCode = `document.querySelector("#papyracy").innerHTML = ""`;
+const unpapyrifyPage = () => {	
+	document.querySelector("#papyracy").innerHTML = "";
+}
 
-chrome?.action?.onClicked?.addListener(function(tab) {
-	toggleIcon = !toggleIcon;
-	if (toggleIcon) {
-		chrome.browserAction.setIcon(
-			{path: "icons/Papyracy48_active.png", tabId: tab.id}
-		);
-		injectedCode = activationCode;
-		console.log(`Papyrusifying ${tab.url}...`);
-	} else {
-		chrome.browserAction.setIcon(
-			{path: "icons/Papyracy48.png", tabId: tab.id}
-		);
-		injectedCode = deactivationCode;
-		console.log(`un-Papyrusifying ${tab.url}...`);
-	}
-  	 return chrome.tabs.executeScript({
-		code: injectedCode
-  	});
+// Get state from storage
+chrome.storage.local.get(["papyracy"], ({active}) => {
+  isActive = active ?? false;
+});
+
+// Add listener for browser action
+chrome.action.onClicked.addListener(function (tab) {
+  isActive = !isActive;
+	// Save state to storage
+	chrome.storage.local.set({papyracy: {active: isActive}});
+  if (isActive) {		
+    chrome.action.setIcon({
+      path: "../icons/Papyracy48_active.png",
+      tabId: tab.id,
+    });
+    functionToExecute = papyrifyPage;
+    console.log(`%cPapyrusifying:  `, `font-size:1.5em;color:goldenrod;font-family:Papyrus;`, `${tab.url}...`);
+  } else {		
+    chrome.action.setIcon({ path: "../icons/Papyracy48.png", tabId: tab.id });
+    functionToExecute = unpapyrifyPage;
+    console.log(`un-Papyrusifying ${tab.url}...`);
+  }
+	return chrome.scripting.executeScript({
+		target: { tabId: tab.id },
+		function: functionToExecute
+	});
 });
